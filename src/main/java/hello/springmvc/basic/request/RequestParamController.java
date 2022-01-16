@@ -101,7 +101,6 @@ public class RequestParamController {
             @RequestParam(required = true, defaultValue = "guest") String username,
             @RequestParam(required = false, defaultValue = "-1") int age){
 
-//        null, "";
         log.info("username={}, age={}", username, age);
         return "ok";
     }
@@ -112,7 +111,6 @@ public class RequestParamController {
      * Map(key=value)
      * MultiValueMap(key=[value1, value2, ...] ex) (key=userIds, value=[id1, id2])
      */
-
     @ResponseBody
     @RequestMapping("/request-param-map")
     public String requestParamMap(@RequestParam Map<String, Object> paramMap){
