@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/mapping/users")
 public class MappingClassController {
 
-
     /**
      * 회원 목록 조회: GET /users
      * 회원 등록: POST /users
@@ -33,7 +32,6 @@ public class MappingClassController {
     public String updateUser(@PathVariable String userId){
         return "update userId  = " + userId;
     }
-
 
     @DeleteMapping("/{userId}")
     public String deleteUser(@PathVariable String  userId){
