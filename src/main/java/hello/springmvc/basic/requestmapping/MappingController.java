@@ -11,15 +11,25 @@ public class MappingController {
 
     private Logger log = LoggerFactory.getLogger(getClass());
 
+    /**
+     * 기본 요청
+     * 둘다 허용 /hello-basic, /hello-basic/
+     * HTTP 메서드 모두 허용 GET, HEAD, POST, PUT, PATCH, DELETE
+     */
+
     @RequestMapping(value = "/hello-basic")
     public String helloBasic() {
         log.info("helloBasic");
         return "ok";
     }
 
+    /**
+     * method 특정 HTTP 메서드 요청만 허용
+     * GET, HEAD, POST, PUT, PATCH, DELETE
+     */
     @RequestMapping(value = "/mapping-get-v1", method = RequestMethod.GET)
     public String mappingGetV1() {
-        log.info("helloBasic");
+        log.info("mappingGetV1");
         return "ok";
     }
 
@@ -49,6 +59,9 @@ public class MappingController {
         return "ok";
     }
 
+    /**
+     * PathVariable 사용 다중
+     */
     @GetMapping("/mapping/users/{userId}/orders/{orderId}")
     public String mappingPath(@PathVariable String userId, @PathVariable Long orderId){
         log.info("mappingPath userId={}, orderId={}", userId, orderId);
@@ -89,7 +102,7 @@ public class MappingController {
      * consumes="!application/json"
      * consumes="application/*"
      * consumes="*\/*"
-     * MediaType.APPLICATION_JSON_VALUE
+     * MediaType.APPLICATION_JSON_VALUE  = "application/json"
      */
     @PostMapping(value = "/mapping-consume", consumes = MediaType.APPLICATION_JSON_VALUE)
     public String mappingConsumes() {
@@ -105,6 +118,7 @@ public class MappingController {
      * produces = "!text/html"
      * produces = "text/*"
      * produces = "*\/*"
+     * MediaType.TEXT_HTML_VALUE = "text/html"
      */
     @PostMapping(value = "/mapping-produce", produces = MediaType.TEXT_HTML_VALUE)
     public String mappingProduces() {
